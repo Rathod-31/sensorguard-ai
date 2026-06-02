@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@fontsource/space-grotesk": "^5.2.10",
+    "date-fns": "^4.4.0",
+    "framer-motion": "^12.40.0",
+    "lucide-react": "^1.17.0",
+    "react-router-dom": "^7.16.0",
+    "recharts": "^3.8.1"
+  }
+}
