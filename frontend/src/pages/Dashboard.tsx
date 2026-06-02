@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api, type DashboardResponse, type AnomalyLog } from '../lib/api';
-import { AlertCircle, Server, Activity, ArrowRight, ShieldCheck, Zap, Cog, HelpCircle, FileText, Download, X } from 'lucide-react';
+import { AlertCircle, Server, Activity, ShieldCheck, Zap, Cog, HelpCircle, Download, X } from 'lucide-react';
 import clsx from 'clsx';
 
 export default function Dashboard() {
