@@ -39,6 +39,5 @@ Thumbs.db
 backend_backup/
 frontend_backup/
 
-# Large data files (keep models, ignore CSV)
-SensorGuardAi/data/raw/*.csv
+# Large data files (keep models)
 SensorGuardAi/data/processed/
