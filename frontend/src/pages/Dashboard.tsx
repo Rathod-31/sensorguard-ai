@@ -31,8 +31,15 @@ export default function Dashboard() {
           });
       } catch (err) {
         if (cancelled) return;
-        setError("🔌 Connection Lost. The AI engine is offline. Please check if the backend server is running on port 8000.");
+        setError("Connecting to AI engine... If this takes more than 60 seconds, the server may be waking up from sleep mode. Please wait and retry.");
         setLoading(false);
+        setTimeout(() => {
+          if (!cancelled) {
+            setLoading(true);
+            setError(null);
+            fetchData();
+          }
+        }, 30000);
       }
     }
     fetchData();
@@ -145,15 +152,18 @@ export default function Dashboard() {
 
   if (error || !data) return (
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">
-      <div className="glass-card p-8 text-center max-w-md border border-danger/30 bg-danger/5">
-        <AlertCircle className="w-12 h-12 mx-auto mb-4 text-danger animate-bounce" />
-        <h3 className="text-lg font-bold text-white mb-2">Connection Failure</h3>
-        <p className="text-sm text-gray-400 leading-relaxed mb-6">{error}</p>
+      <div className="glass-card p-8 text-center max-w-md border border-warning/30 bg-warning/5">
+        <Server className="w-12 h-12 mx-auto mb-4 text-warning animate-pulse" />
+        <h3 className="text-lg font-bold text-white mb-2">Waking up AI Engine</h3>
+        <p className="text-sm text-gray-400 leading-relaxed mb-6">
+          <Activity className="inline-block w-4 h-4 mr-2 animate-spin text-accent" />
+          {error}
+        </p>
         <button 
           onClick={() => window.location.reload()} 
-          className="px-6 py-2 bg-danger text-white rounded-lg hover:bg-danger/80 transition-colors font-semibold text-xs uppercase tracking-wider"
+          className="px-6 py-2 bg-warning text-dark-deepest rounded-lg hover:bg-warning/80 transition-colors font-bold text-xs uppercase tracking-wider mx-auto flex items-center justify-center"
         >
-          Retry Connection
+          Manual Retry
         </button>
       </div>
     </div>
