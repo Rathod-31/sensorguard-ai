@@ -48,7 +48,7 @@ def load_models() -> ModelBundle:
 
     raw_df = pd.read_csv(data_path)
     pca_df_path = models_dir / "pca_dataframe.pkl"
-    pca_df = joblib.load(pca_df_path) if pca_df_path.exists() else pd.DataFrame()
+    pca_df = pd.DataFrame() # joblib.load(pca_df_path) if pca_df_path.exists() else pd.DataFrame()
 
     return ModelBundle(
         xgb=joblib.load(models_dir / "best_xgboost.pkl"),
