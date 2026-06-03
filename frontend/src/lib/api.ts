@@ -75,7 +75,7 @@ export interface AnomalyLog {
 
 export const api = {
   async predict(data: PredictionRequest): Promise<PredictionResponse> {
-    const res = await fetchWithTimeout(`${API_BASE_URL}/predict`, {
+    const res = await fetchWithTimeout(`${API_BASE_URL}/api/predict`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -88,7 +88,7 @@ export const api = {
   },
 
   async getDashboard(): Promise<DashboardResponse> {
-    const res = await fetchWithTimeout(`${API_BASE_URL}/dashboard`);
+    const res = await fetchWithTimeout(`${API_BASE_URL}/api/dashboard`);
     if (!res.ok) {
       const detail = await res.json().catch(() => ({}));
       throw new Error(detail.detail ?? 'Failed to fetch dashboard');
@@ -102,7 +102,7 @@ export const api = {
     if (severity) params.append('severity', severity);
     params.append('limit', limit.toString());
 
-    const res = await fetchWithTimeout(`${API_BASE_URL}/anomalies?${params.toString()}`);
+    const res = await fetchWithTimeout(`${API_BASE_URL}/api/anomalies?${params.toString()}`);
     if (!res.ok) {
       const detail = await res.json().catch(() => ({}));
       throw new Error(detail.detail ?? 'Failed to fetch anomalies');
